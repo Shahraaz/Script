@@ -1,6 +1,5 @@
 #!/bin/bash
 commit_message='0'
-echo "hello";
 if [ -z "$1" ]
 then
 	commit_message='Bash_Auto_Commit'
