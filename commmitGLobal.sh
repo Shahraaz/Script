@@ -1,7 +1,7 @@
-commitMessage = '0'
+commit_message = '0'
 if [ -z "$1" ]
 then
-	commit_message='commitBeforeShutdown'
+	commit_message='globalCommit'
 else
 	commit_message=$1
 fi
