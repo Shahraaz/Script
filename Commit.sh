@@ -1,5 +1,6 @@
 #!/bin/bash
 commit_message='0'
+echo "hello";
 if [ -z "$1" ]
 then
 	commit_message='Bash_Auto_Commit'
@@ -14,14 +15,13 @@ else
 	direct=$2
 fi
 cd $direct
-folder=$(ls $2)
 git add --all
 if [ $? -eq 0 ]
 then
-	git add --all
 	git commit -m $commit_message
 	git push -u origin master
 fi
+folder=$(ls $2)
 for f in $folder
 do	if [ -d $f ]
 	then
