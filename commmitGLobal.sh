@@ -1,4 +1,4 @@
-commit_message = '0'
+commit_message='0'
 if [ -z "$1" ]
 then
 	commit_message='globalCommit'
