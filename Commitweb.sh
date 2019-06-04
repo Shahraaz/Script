@@ -5,7 +5,5 @@ then
 else
 	commit_message=$1
 fi
-cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming
-Commit.sh $commit_message
-cd C:/\Script_Folder
+cd C:/\Users/\Sheraaz/\Desktop/\WebDevelopment
 Commit.sh $commit_message
