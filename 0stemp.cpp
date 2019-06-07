@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define Online 1
 // #define multitest 1
 #define Debug 1
 #ifdef Debug
@@ -37,10 +36,8 @@ void solve()
 
 int main()
 {
-#ifdef Online
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-#endif
 	int t = 1;
 #ifdef multitest
 	cin >> t;
