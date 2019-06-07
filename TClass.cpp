@@ -2,7 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define Online 1
+// #define Online 1
+// #define multitest 1
 #define Debug 1
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
@@ -21,6 +22,7 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #else
 #define db(...)
 #endif
+
 typedef long long ll;
 typedef long double ld;
 #define f first
@@ -29,22 +31,21 @@ typedef long double ld;
 const long long mod = 1000000007;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-class TClass
+class Solver
 {
 private:
 	/* data */
 public:
-	int solve()
+	int Solve(/* args */)
 	{
-		return 0;
 	}
 };
 
 #ifndef Online
 int main()
 {
-	TClass T;
-	cout << T.solve();
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
 	return 0;
 }
 #endif

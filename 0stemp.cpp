@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define Online 1
+// #define Online 1
 // #define multitest 1
 #define Debug 1
 #ifdef Debug
@@ -22,6 +22,7 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #else
 #define db(...)
 #endif
+
 typedef long long ll;
 typedef long double ld;
 #define f first
@@ -36,13 +37,9 @@ void solve()
 
 int main()
 {
+#ifdef Online
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-#ifndef Online
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
-	auto TimeStart = chrono::steady_clock::now();
-	auto TimeEnd = chrono::steady_clock::now();
 #endif
 	int t = 1;
 #ifdef multitest
@@ -50,10 +47,5 @@ int main()
 #endif
 	while (t--)
 		solve();
-#ifndef Online
-	TimeEnd = chrono::steady_clock::now();
-	auto ElapsedTime = TimeEnd - TimeStart;
-	cout << "\n\nTime elapsed: " << chrono::duration<double>(ElapsedTime).count() << " seconds.\n";
-#endif
 	return 0;
 }
