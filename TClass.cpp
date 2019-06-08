@@ -29,7 +29,6 @@ typedef long double ld;
 #define s second
 #define pb push_back
 const long long mod = 1000000007;
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 class Solver
 {
