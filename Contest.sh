@@ -26,4 +26,4 @@ cp a.cpp e.cpp
 cp a.cpp f.cpp
 cp a.cpp extra.cpp
 touch input.txt
-code a.cpp
+code .

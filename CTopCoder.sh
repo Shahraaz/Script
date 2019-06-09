@@ -22,4 +22,4 @@ cat C:/\Script_Folder/\TClass.cpp >> a.cpp
 cp a.cpp b.cpp
 cp a.cpp c.cpp
 cp a.cpp extra.cpp
-code a.cpp
+code .
