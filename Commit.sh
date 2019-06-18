@@ -6,7 +6,7 @@ then
 else
 	commit_message=$1
 fi
-commit_message= "$commit_message $(date '+%d/%m/%Y %H:%M:%S')"
+commit_message= "$commit_message$(date '+%d/%m/%Y %H:%M:%S')"
 echo $commit_message
 direct='0'
 if [ -z "$2" ]
