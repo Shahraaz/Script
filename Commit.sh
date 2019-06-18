@@ -6,8 +6,7 @@ then
 else
 	commit_message=$1
 fi
-dt=$(date '+%d/%m/%Y %H:%M:%S');
-commit_message= "$commit_message $dt"
+commit_message= "$commit_message $(date '+%d/%m/%Y %H:%M:%S')"
 direct='0'
 if [ -z "$2" ]
 then
