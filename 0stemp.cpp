@@ -35,8 +35,10 @@ void solve()
 
 int main()
 {
+#ifndef Debug
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
+#endif
 	int t = 1;
 #ifdef multitest
 	cin >> t;
