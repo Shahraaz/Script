@@ -3,7 +3,7 @@
 using namespace std;
 
 // #define multitest 1
-#define Debug 1
+// #define Debug 1
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 template <typename Arg1>
