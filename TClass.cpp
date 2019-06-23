@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define Online 1
+#define Online 1
 // #define multitest 1
 #define Debug 1
 #ifdef Debug
