@@ -3,7 +3,6 @@
 using namespace std;
 
 // #define multitest 1
-// #define Debug 1
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 template <typename Arg1>
@@ -35,6 +34,9 @@ void solve()
 
 int main()
 {
+#ifdef LOCAL
+	auto TimeStart = chrono::steady_clock::now();
+#endif
 #ifndef Debug
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
@@ -45,5 +47,8 @@ int main()
 #endif
 	while (t--)
 		solve();
+#ifdef LOCAL
+	cout << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
+#endif
 	return 0;
 }
