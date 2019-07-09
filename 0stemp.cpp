@@ -27,6 +27,7 @@ typedef long double ld;
 #define s second
 #define pb push_back
 const long long mod = 1000000007;
+auto TimeStart = chrono::steady_clock::now();
 
 void solve()
 {
@@ -34,9 +35,6 @@ void solve()
 
 int main()
 {
-#ifdef LOCAL
-	auto TimeStart = chrono::steady_clock::now();
-#endif
 #ifndef Debug
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
@@ -47,7 +45,7 @@ int main()
 #endif
 	while (t--)
 		solve();
-#ifdef LOCAL
+#ifdef Time
 	cout << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
 	return 0;
