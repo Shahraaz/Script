@@ -45,7 +45,7 @@ int main()
 	while (t--)
 		solve();
 #ifdef TIME
-	cout << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
+	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
 	return 0;
 }
