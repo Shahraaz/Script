@@ -21,13 +21,14 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #define db(...)
 #endif
 
-typedef long long ll;
-typedef long double ld;
+using ll = long long;
 #define f first
 #define s second
 #define pb push_back
 const long long mod = 1000000007;
 auto TimeStart = chrono::steady_clock::now();
+
+const int nax = 2e5 + 10;
 
 void solve()
 {
@@ -35,17 +36,15 @@ void solve()
 
 int main()
 {
-#ifndef Debug
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-#endif
 	int t = 1;
 #ifdef multitest
 	cin >> t;
 #endif
 	while (t--)
 		solve();
-#ifdef Time
+#ifdef TIME
 	cout << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
 	return 0;
