@@ -2,7 +2,7 @@
 commit_message='0'
 if [ -z "$1" ]
 then
-    commit_message='Auto Commit'
+    commit_message='AutoCommit'
 else
     commit_message=$1
 fi
