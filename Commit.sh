@@ -2,7 +2,7 @@
 commit_message='0'
 if [ -z "$1" ]
 then
-    commit_message='Bash_Auto_Commit'
+    commit_message='Auto Commit'
 else
     commit_message=$1
 fi

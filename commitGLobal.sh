@@ -1,7 +1,7 @@
 commit_message='0'
 if [ -z "$1" ]
 then
-	commit_message='globalCommit'
+	commit_message='global Commit'
 else
 	commit_message=$1
 fi
