@@ -2,9 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define Online 1
 // #define multitest 1
-#define Debug 1
+// #define Debug
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 template <typename Arg1>
@@ -23,12 +22,13 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #define db(...)
 #endif
 
-typedef long long ll;
-typedef long double ld;
+using ll = long long;
 #define f first
 #define s second
 #define pb push_back
 const long long mod = 1000000007;
+
+const int nax = 2e5 + 10;
 
 class Solver
 {
@@ -40,7 +40,7 @@ public:
 	}
 };
 
-#ifndef Online
+#ifdef Offline
 int main()
 {
 	ios_base::sync_with_stdio(0);
