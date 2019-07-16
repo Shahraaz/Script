@@ -1,5 +1,4 @@
 import requests
-import sys
 import os
 from time import sleep
 
@@ -39,19 +38,19 @@ def login():
 
 
 def keepalive(keepalive_url):
-    print("Keepalive...")
     if keepalive_url == None:
         return
+    print("Keepalive...")
     requests.get(keepalive_url)
 
 
 def logout(server_ip):
-    print(server_ip)
     if server_ip == None:
         return
-    print("Bbye")
+    print(server_ip)
     os.system("commitGlobal.sh")
     requests.get(server_ip+"logout?a")
+    print("Bbye")
 
 
 try:
