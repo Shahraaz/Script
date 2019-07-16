@@ -1,11 +1,5 @@
-commit_message='0'
-if [ -z "$1" ]
-then
-	commit_message='BeforeShutdown'
-else
-	commit_message=$1
-fi
-CommitGlobal.sh $commit_message
+IFS= read -r -p "Enter Commit Message: " commit_message
+CommitGlobal.sh "$commit_message"
 if [ -z "$2" ]
 then
 	wget --tries=1 http://172.16.24.1:1000/logout?/
