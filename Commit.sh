@@ -26,12 +26,11 @@ else
     do	if [ -d $f ]
         then
             cd $f
-            ls .git
+            git add --all
             if [ $? -eq 1 ]
             then
                 cd ..
             else
-                git add --all
                 git commit -m "$(date +"%a, %b %d %H:%M") $commit_message"
                 git push -u origin master
                 cd ..
