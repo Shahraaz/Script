@@ -1,11 +1,5 @@
-commit_message='0'
-if [ -z "$1" ]
-then
-	commit_message='globalCommit'
-else
-	commit_message=$1
-fi
+IFS= read -r -p "Enter Commit Message: " commit_message
 cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming
-Commit.sh $commit_message
+Commit.sh "$commit_message"
 cd C:/\Script_Folder
-Commit.sh $commit_message
+Commit.sh "$commit_message"
