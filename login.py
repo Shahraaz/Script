@@ -3,8 +3,9 @@ import sys
 import os
 from time import sleep
 
-USER = input("username: ")
-PASS = input("password: ")
+f = open("certificate.txt", "r")
+USER = f.read()
+PASS = f.read()
 
 
 def login():
