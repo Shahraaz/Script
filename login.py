@@ -62,6 +62,7 @@ def logout(server_ip):
     requests.get(server_ip+"logout?a")
     print("Bbye")
     sys.stdout.flush()
+    os.system("shutdown -s -t 0")
 
 
 try:
