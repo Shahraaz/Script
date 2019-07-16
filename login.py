@@ -7,6 +7,7 @@ USER = f.readline()
 USER = USER[:-1]
 PASS = f.readline()
 PASS = PASS[:-1]
+f.close()
 
 
 def login():
@@ -34,6 +35,11 @@ def login():
     i = resp.text.find(server_ip+"keepalive")
     j = resp.text.find("\"", i)
     keepalive_url = resp.text[i:j]
+    f = open("Url.txt","w")
+    f.write(server_ip)
+    f.write("\n")
+    f.write(keepalive_url)
+    f.close()
     return server_ip, keepalive_url
 
 
