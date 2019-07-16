@@ -4,8 +4,10 @@ import os
 from time import sleep
 
 f = open("certificate.txt", "r")
-USER = f.read()
-PASS = f.read()
+USER = f.readline()
+USER = USER[:-1]
+PASS = f.readline()
+PASS = PASS[:-1]
 
 
 def login():
