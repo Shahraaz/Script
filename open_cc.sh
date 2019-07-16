@@ -1,3 +1,3 @@
 #!/bin/bash
-cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming/\Cp/\codechef
+cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming/\CP_S5/\codechef
 code .

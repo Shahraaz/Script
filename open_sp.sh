@@ -1,3 +1,3 @@
 #!/bin/bash
-cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming/\Cp/\spoj
+cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming/\CP_S5/\spoj
 code .
