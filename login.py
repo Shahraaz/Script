@@ -58,7 +58,9 @@ def logout(server_ip):
         return
     print(server_ip)
     sys.stdout.flush()
-    os.system("commitGlobal.sh")
+    str = input("Do you want to run Commiter\n")
+    if str[0] == 'y' or str[0] == 'Y':
+        os.system("commitGlobal.sh")
     requests.get(server_ip+"logout?a")
     print("Bbye")
     sys.stdout.flush()
