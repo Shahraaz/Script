@@ -58,13 +58,15 @@ def logout(server_ip):
         return
     print(server_ip)
     sys.stdout.flush()
-    str = input("Do you want to run Commiter\n")
+    str1 = input("Do you want to shutdown?(y/n) ")
+    str = input("Do you want to run Commiter?(y/n) ")
     if str[0] == 'y' or str[0] == 'Y':
         os.system("commitGlobal.sh")
     requests.get(server_ip+"logout?a")
     print("Bbye")
     sys.stdout.flush()
-    os.system("shutdown -s -t 0")
+    if str1[0] == 'y' or str1[0] == 'Y':
+        os.system("shutdown -s -t 0")
 
 
 try:
