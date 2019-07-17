@@ -28,7 +28,6 @@ def login():
     i = login_page.find(start_text) + len(start_text)
     j = login_page.find("\"", i)
     magic = login_page[i:j]
-
     resp = requests.post(server_ip, data={
         "magic": magic,
         "username": USER,
@@ -69,10 +68,11 @@ def logout(server_ip):
         os.system("shutdown -s -t 0")
 
 
-try:
-    server_url, keepalive_url = login()
-    while True:
-        sleep(2000)
-        keepalive(keepalive_url)
-except KeyboardInterrupt:
-    logout(server_url)
+server_url, keepalive_url = login()
+while True:
+    try:
+        while True:
+            sleep(2000)
+            keepalive(keepalive_url)
+    except KeyboardInterrupt:
+        logout(server_url)
