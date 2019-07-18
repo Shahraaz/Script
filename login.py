@@ -68,11 +68,10 @@ def logout(server_ip):
         os.system("shutdown -s -t 0")
 
 
-server_url, keepalive_url = login()
-while True:
-    try:
-        while True:
-            sleep(2000)
-            keepalive(keepalive_url)
-    except KeyboardInterrupt:
-        logout(server_url)
+try:
+    server_url, keepalive_url = login()
+    while True:
+        sleep(2000)
+        keepalive(keepalive_url)
+except KeyboardInterrupt:
+    logout(server_url)
