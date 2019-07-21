@@ -1,4 +1,6 @@
-// #define Debug
+#include<bits/stdc++.h>
+using namespace std;
+#define Debug
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 template <typename Arg1>
