@@ -16,11 +16,11 @@ int main()
 	i = uniform_int_distribution<int>(0, 2)(rng);
 	cout << "\nSuggested Course: \n";
 	if (i == 0)
-		cout << "Coursera\n";
+		cout << "AndrewNG\n";
 	else if (i == 1)
-		cout << "Udemy\n";
+		cout << "Python Udemy\n";
 	else
-		cout << "Youtube Guy\n";
+		cout << "Youtube Guy Notes\n";
 	cout << "\n";
 	cout.flush();
 	// vector<int> Phy(3), Data(3);
