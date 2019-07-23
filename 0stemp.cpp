@@ -5,6 +5,22 @@ using namespace std;
 // #define multitest 1
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
+#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
+template <typename T, typename U>
+ostream &operator<<(ostream &out, const pair<T, U> &p)
+{
+	out << '[' << p.first << ", " << p.second << ']';
+	return out;
+}
+template <typename Arg>
+void PC(const char *name, Arg &&arg)
+{
+	std::cerr << name << "\n";
+	cerr << "{ ";
+	for (const auto &v : arg)
+		cerr << v << ' ';
+	cerr << " }\n";
+}
 template <typename Arg1>
 void ZZ(const char *name, Arg1 &&arg1)
 {
@@ -17,8 +33,10 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 	std::cerr.write(names, comma - names) << " = " << arg1;
 	ZZ(comma, args...);
 }
+
 #else
 #define db(...)
+#define pc(...)
 #endif
 
 using ll = long long;
