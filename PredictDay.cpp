@@ -5,14 +5,12 @@ using namespace std;
 int main()
 {
 	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-	auto i = uniform_int_distribution<int>(0, 3)(rng);
+	auto i = uniform_int_distribution<int>(0, 2)(rng);
 	cout << "Your Suggested Physical Activity: \n";
 	if (i < 2)
 		cout << "Gym\n";
-	else if (i == 2)
-		cout << "Cycling\n";
 	else
-		cout << "Swimming\n";
+		cout << "Cycling\n";
 	i = uniform_int_distribution<int>(0, 2)(rng);
 	cout << "\nSuggested Course: \n";
 	if (i == 0)

@@ -15,8 +15,7 @@ ostream &operator<<(ostream &out, const pair<T, U> &p)
 template <typename Arg>
 void PC(const char *name, Arg &&arg)
 {
-	std::cerr << name << "\n";
-	cerr << "{ ";
+	std::cerr << name << " { ";
 	for (const auto &v : arg)
 		cerr << v << ' ';
 	cerr << " }\n";
@@ -33,7 +32,6 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 	std::cerr.write(names, comma - names) << " = " << arg1;
 	ZZ(comma, args...);
 }
-
 #else
 #define db(...)
 #define pc(...)
