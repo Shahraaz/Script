@@ -23,4 +23,9 @@ cp a.cpp b.cpp
 cp a.cpp c.cpp
 cp a.cpp d.cpp
 cp a.cpp extra.cpp
+cp -r C:/\Script_Folder/\.vscode .vscode
 code .
+code d.cpp
+code c.cpp
+code b.cpp
+code a.cpp
