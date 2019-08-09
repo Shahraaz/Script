@@ -1,15 +1,19 @@
 import requests
 import sys
 import os
+import random
 from time import sleep
+from datetime import datetime
+random.seed(datetime.now())
 
-f = open("certificate.txt", "r")
-USER = f.readline()
-USER = USER[:-1]
-PASS = f.readline()
-PASS = PASS[:-1]
+f = open("success.txt", "r")
+CRED = []
+for line in f:
+    CRED.append(line[:-1])
 f.close()
 
+USER = "USER"
+PASS = "PASS"
 
 def login():
     url = "http://detectportal.firefox.com/status.txt"
@@ -17,11 +21,11 @@ def login():
     if resp.url == url:
         print("Already logged in")
         sys.stdout.flush()
-        return None, None
+        sys.exit()
+        return False, False
     server_url = resp.url
     i = server_url.find("fgtauth")
     server_ip = server_url[0:i]
-    print("Logged in to Server: ", server_ip)
     sys.stdout.flush()
     login_page = requests.get(server_url).text
     start_text = "name=\"magic\" value=\""
@@ -36,11 +40,17 @@ def login():
     i = resp.text.find(server_ip+"keepalive")
     j = resp.text.find("\"", i)
     keepalive_url = resp.text[i:j]
+    if i == -1:
+        return False, False
+    print("Logged in to Server: ", server_ip)
+    print(USER, PASS)
+    sys.stdout.flush()
     f = open("Url.txt", "w")
     f.write(server_ip)
     f.write("\n")
     f.write(keepalive_url)
     f.close()
+    i = resp.text.find("Firewall authentication failed. Please try again.")
     return server_ip, keepalive_url
 
 
@@ -69,9 +79,16 @@ def logout(server_ip):
 
 
 try:
-    server_url, keepalive_url = login()
     while True:
-        sleep(2000)
-        keepalive(keepalive_url)
+        i = random.randrange(0, len(CRED), 1)
+        i = random.randrange(0, len(CRED), 1)
+        data = CRED[i].split()
+        USER = data[0]
+        PASS = data[1]
+        server_url, keepalive_url = login()
+        if server_url:
+            while True:
+                sleep(2000)
+                keepalive(keepalive_url)
 except KeyboardInterrupt:
     logout(server_url)
