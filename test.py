@@ -37,6 +37,7 @@ if i == -1:
         f.write(' ')
         f.write(PASS)
         f.write('\n')
+        print(USER, PASS, "OverLimit or Falied")
         f.close()
 else:
     f = open("success.txt", "a+")
@@ -44,5 +45,6 @@ else:
     f.write(' ')
     f.write(PASS)
     f.write('\n')
+    print(USER,PASS,"Success")
     f.close()
     requests.get(server_ip+"logout?a")

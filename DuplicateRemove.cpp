@@ -48,48 +48,16 @@ const int nax = 2e5 + 10;
 
 void solve()
 {
-	freopen("name_Filtered.txt", "r", stdin);
+	freopen("success.txt", "r", stdin);
 	string txt;
-	vector<string> USER, PASS;
-	bool b = false;
-	while (cin >> txt)
-	{
-		if (b)
-		{
-			string temp = "";
-			int cnt = 2,i=0;
-			while (cnt)
-			{
-				if(txt[i]=='-')
-					cnt--;
-				temp += txt[i];
-				++i;
-			}
-			if(txt[i]=='0')
-				temp += "20";
-			else
-				temp += "19";
-			while (txt[i])
-			{
-				temp += txt[i];
-				++i;
-			}
-			PASS.pb(temp);
-		}
-		else
-			USER.pb(txt);
-		b = !b;
-	}
-	int cnt = USER.size();
-	while (cnt--)
-	{
-		int i = rand() % USER.size();
-		ofstream fout("certificate.txt");
-		fout << USER[i] << '\n';
-		fout << PASS[i] << '\n';
-		fout.close();
-		system("python test.py");
-	}
+	vector<string> Line;
+	while (getline(cin, txt))
+		Line.pb(txt);
+	sort(Line.begin(), Line.end());
+	Line.erase(unique(Line.begin(), Line.end()), Line.end());
+	freopen("success.txt", "w", stdout);
+	for (auto x : Line)
+		cout << x << '\n';
 }
 
 int main()
@@ -97,13 +65,12 @@ int main()
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
 	int t = 1;
-	srand(time(NULL));
 #ifdef multitest
 	cin >> t;
 #endif
 	while (t--)
 		solve();
-#ifdef TIME
+#ifdef WIN32
 	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
 	return 0;

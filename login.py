@@ -81,7 +81,7 @@ def logout(server_ip):
 try:
     while True:
         i = random.randrange(0, len(CRED), 1)
-        i = random.randrange(0, len(CRED), 1)
+        print(i,len(CRED))
         data = CRED[i].split()
         USER = data[0]
         PASS = data[1]
