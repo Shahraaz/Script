@@ -48,27 +48,25 @@ const int nax = 2e5 + 10;
 
 void solve()
 {
-	freopen("name_Filtered.txt", "r", stdin);
+	// db("Here");
+	freopen("FilterNew.txt", "r", stdin);
 	string txt;
 	vector<string> USER, PASS;
 	bool b = false;
+	// db("Here");
 	while (cin >> txt)
 	{
 		if (b)
 		{
 			string temp = "";
-			int cnt = 2,i=0;
+			int cnt = 2, i = 0;
 			while (cnt)
 			{
-				if(txt[i]=='-')
+				if (txt[i] == '-')
 					cnt--;
 				temp += txt[i];
 				++i;
 			}
-			if(txt[i]=='0')
-				temp += "20";
-			else
-				temp += "19";
 			while (txt[i])
 			{
 				temp += txt[i];
@@ -79,14 +77,17 @@ void solve()
 		else
 			USER.pb(txt);
 		b = !b;
+		// db("Here");
 	}
 	int cnt = USER.size();
+	db(cnt);
 	while (cnt--)
 	{
 		int i = rand() % USER.size();
 		ofstream fout("certificate.txt");
 		fout << USER[i] << '\n';
 		fout << PASS[i] << '\n';
+		// db(cnt, USER[i], PASS[i]);
 		fout.close();
 		system("python test.py");
 	}

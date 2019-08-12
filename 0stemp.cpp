@@ -3,7 +3,7 @@
 using namespace std;
 
 // #define multitest 1
-#ifdef Debug
+#ifdef WIN32
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
 template <typename T, typename U>

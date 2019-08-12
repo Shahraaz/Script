@@ -32,7 +32,7 @@ if i == -1:
     i = resp.text.find("Firewall authentication failed")
     # print(resp.text)
     if i == -1:
-        f = open("overLimit.txt", "a+")
+        f = open("overLimitShubham.txt", "a+")
         f.write(USER)
         f.write(' ')
         f.write(PASS)
@@ -40,7 +40,7 @@ if i == -1:
         print(USER, PASS, "OverLimit or Falied")
         f.close()
 else:
-    f = open("success.txt", "a+")
+    f = open("successShubham.txt", "a+")
     f.write(USER)
     f.write(' ')
     f.write(PASS)
