@@ -15,6 +15,7 @@ f.close()
 USER = "USER"
 PASS = "PASS"
 
+
 def login():
     url = "http://detectportal.firefox.com/status.txt"
     resp = requests.get(url)
@@ -26,15 +27,15 @@ def login():
     server_url = resp.url
     i = server_url.find("fgtauth")
     if i == -1:
-        return False,False
+        return False, False
     server_ip = server_url[0:i]
     sys.stdout.flush()
     login_page = requests.get(server_url).text
     start_text = "name=\"magic\" value=\""
     i = login_page.find(start_text) + len(start_text)
     j = login_page.find("\"", i)
-    if i==-1 or j==-1:
-        return  False , False
+    if i == -1 or j == -1:
+        return False, False
     magic = login_page[i:j]
     resp = requests.post(server_ip, data={
         "magic": magic,
@@ -44,11 +45,11 @@ def login():
     i = resp.text.find(server_ip+"keepalive")
     j = resp.text.find("\"", i)
     keepalive_url = resp.text[i:j]
-    if i==-1 or j==-1:
-        print(USER, PASS,"Falied")
+    if i == -1 or j == -1:
+        print(USER, PASS, "Falied")
         return False, False
     print("Logged in to Server: ", server_ip)
-    print(USER, PASS,"Success")
+    print(USER, PASS, "Success")
     now = datetime.now()
     print(now.strftime("%d-%m %H:%M:%S"))
     sys.stdout.flush()
@@ -79,7 +80,7 @@ def logout(server_ip):
 try:
     while True:
         i = random.randrange(0, len(CRED), 1)
-        print(i,len(CRED))
+        print(i, len(CRED))
         data = CRED[i].split()
         USER = data[0]
         PASS = data[1]
