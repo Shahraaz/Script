@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define multitest 1
+// #define multitest 1
 #ifdef WIN32
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
@@ -45,10 +45,46 @@ const long long mod = 1000000007;
 auto TimeStart = chrono::steady_clock::now();
 
 const int nax = 2e5 + 10;
+using ld = long double;
+
+vector<ld> x, y;
+
+ld profit(int _x, int _y)
+{
+	return min(x[_x], y[_y]) - (_x + _y);
+}
 
 void solve()
 {
-
+	int n;
+	cin >> n;
+	x = vector<ld>(n + 1);
+	y = vector<ld>(n + 1);
+	for (int i = 1; i <= n; ++i)
+		cin >> x[i] >> y[i];
+	sort(x.rbegin(), --x.rend());
+	sort(y.rbegin(), --y.rend());
+	// pc(x);
+	// pc(y);
+	for (int i = 1; i <= n; ++i)
+		x[i] += x[i - 1];
+	for (int i = 1; i <= n; ++i)
+		y[i] += y[i - 1];
+	ld ans = 0;
+	for (int i = 0; i <= n; ++i)
+	{
+		int le = 0, ri = n - 1;
+		while (le <= ri)
+		{
+			int mid = (le + ri) / 2;
+			if (profit(i, mid) <= profit(i, mid + 1))
+				le = mid + 1;
+			else
+				ri = mid - 1;
+		}
+		ans = max(ans, profit(i, le));
+	}
+	cout << fixed << setprecision(4) << ans;
 }
 
 int main()
