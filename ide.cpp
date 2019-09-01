@@ -1,8 +1,7 @@
 //Optimise
 #include <bits/stdc++.h>
-using namespace std;
 
-// #define multitest 1
+using namespace std;
 #ifdef WIN32
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
@@ -38,67 +37,48 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #endif
 
 using ll = long long;
-#define f first
-#define s second
-#define pb push_back
-const long long mod = 1000000007;
-auto TimeStart = chrono::steady_clock::now();
-
-const int nax = 2e5 + 10;
 using ld = long double;
-
-vector<ld> x, y;
-
-ld profit(int _x, int _y)
-{
-	return min(x[_x], y[_y]) - (_x + _y);
-}
-
-void solve()
-{
-	int n;
-	cin >> n;
-	x = vector<ld>(n + 1);
-	y = vector<ld>(n + 1);
-	for (int i = 1; i <= n; ++i)
-		cin >> x[i] >> y[i];
-	sort(x.rbegin(), --x.rend());
-	sort(y.rbegin(), --y.rend());
-	// pc(x);
-	// pc(y);
-	for (int i = 1; i <= n; ++i)
-		x[i] += x[i - 1];
-	for (int i = 1; i <= n; ++i)
-		y[i] += y[i - 1];
-	ld ans = 0;
-	for (int i = 0; i <= n; ++i)
-	{
-		int le = 0, ri = n - 1;
-		while (le <= ri)
-		{
-			int mid = (le + ri) / 2;
-			if (profit(i, mid) <= profit(i, mid + 1))
-				le = mid + 1;
-			else
-				ri = mid - 1;
-		}
-		ans = max(ans, profit(i, le));
-	}
-	cout << fixed << setprecision(4) << ans;
-}
 
 int main()
 {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	int t = 1;
-#ifdef multitest
-	cin >> t;
-#endif
-	while (t--)
-		solve();
-#ifdef WIN32
-	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
-#endif
+	int n;
+	cin >> n;
+	vector<ll> a(n);
+	ll tot = 0;
+	for (auto &x : a)
+	{
+		cin >> x;
+		tot += x;
+	}
+	const int Lim = 1 << (n);
+	vector<ld> DpCom(Lim, 0);
+	cerr << fixed << setprecision(9);
+	for (int mask = 1; mask < Lim; ++mask)
+	{
+		ll now = 0, cnt = 0;
+		// cerr << DpCom[mask] << ' ' << cnt << '\n';
+		for (int can = 0; can < n; ++can)
+			if (mask & (1 << can))
+			{
+				now += a[can];
+				cnt++;
+			}
+		for (int can = 0; can < n; ++can)
+			if (mask & (1 << can))
+			{
+				int maskRem = mask ^ (1 << can);
+				ll num = a[can];
+				ld y = ld(num) / tot;
+				DpCom[mask] += y * DpCom[maskRem];
+				// db(num, den, y);
+				// ld y2 = 1 - ld(now) / tot;
+				// DpCom[mask] += y / (1 - y2) / (1 - y2);
+			}
+		DpCom[mask] *= tot / (tot - now);
+		db(mask, DpCom[mask], cnt);
+	}
+	// cerr << Lim - 1 << '\n';
+	cout << fixed << setprecision(9);
+	cout << DpCom[Lim - 1] << '\n';
 	return 0;
 }
