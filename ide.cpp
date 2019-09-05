@@ -1,7 +1,8 @@
 //Optimise
 #include <bits/stdc++.h>
-
 using namespace std;
+
+// #define multitest 1
 #ifdef WIN32
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
@@ -37,48 +38,35 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #endif
 
 using ll = long long;
-using ld = long double;
+#define f first
+#define s second
+#define pb push_back
+const long long mod = 30011;
+auto TimeStart = chrono::steady_clock::now();
+
+const int nax = 2e5 + 10, lim = 65536;
+
+int data[lim + 10];
+int ans = 0;
+
+void solve()
+{
+	int n, k;
+	cin >> n >> k;
+}
 
 int main()
 {
-	int n;
-	cin >> n;
-	vector<ll> a(n);
-	ll tot = 0;
-	for (auto &x : a)
-	{
-		cin >> x;
-		tot += x;
-	}
-	const int Lim = 1 << (n);
-	vector<ld> DpCom(Lim, 0);
-	cerr << fixed << setprecision(9);
-	for (int mask = 1; mask < Lim; ++mask)
-	{
-		ll now = 0, cnt = 0;
-		// cerr << DpCom[mask] << ' ' << cnt << '\n';
-		for (int can = 0; can < n; ++can)
-			if (mask & (1 << can))
-			{
-				now += a[can];
-				cnt++;
-			}
-		for (int can = 0; can < n; ++can)
-			if (mask & (1 << can))
-			{
-				int maskRem = mask ^ (1 << can);
-				ll num = a[can];
-				ld y = ld(num) / tot;
-				DpCom[mask] += y * DpCom[maskRem];
-				// db(num, den, y);
-				// ld y2 = 1 - ld(now) / tot;
-				// DpCom[mask] += y / (1 - y2) / (1 - y2);
-			}
-		DpCom[mask] *= tot / (tot - now);
-		db(mask, DpCom[mask], cnt);
-	}
-	// cerr << Lim - 1 << '\n';
-	cout << fixed << setprecision(9);
-	cout << DpCom[Lim - 1] << '\n';
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t = 1;
+#ifdef multitest
+	cin >> t;
+#endif
+	while (t--)
+		solve();
+#ifdef WIN32
+	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
+#endif
 	return 0;
 }

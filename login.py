@@ -15,28 +15,41 @@ f.close()
 USER = "USER"
 PASS = "PASS"
 
+url = "http://detectportal.firefox.com/status.txt"
+resp = requests.get(url)
+if resp.url == url:
+    print("Already logged in")
+    sys.stdout.flush()
+    sys.exit()
+server_url = resp.url
+i = server_url.find("fgtauth")
+if i == -1:
+    sys.exit()
+server_ip = server_url[0:i]
+login_page = requests.get(server_url).text
+start_text = "name=\"magic\" value=\""
+i = login_page.find(start_text) + len(start_text)
+j = login_page.find("\"", i)
+if i == -1 or j == -1:
+    sys.exit()
+magic = login_page[i:j]
 
-def login():
+def login(server_ip,magic):
     url = "http://detectportal.firefox.com/status.txt"
     resp = requests.get(url)
-    if resp.url == url:
-        print("Already logged in")
-        sys.stdout.flush()
-        sys.exit()
-        return False, False
     server_url = resp.url
     i = server_url.find("fgtauth")
     if i == -1:
-        return False, False
+        sys.exit()
     server_ip = server_url[0:i]
-    sys.stdout.flush()
     login_page = requests.get(server_url).text
     start_text = "name=\"magic\" value=\""
     i = login_page.find(start_text) + len(start_text)
     j = login_page.find("\"", i)
     if i == -1 or j == -1:
-        return False, False
+        sys.exit()
     magic = login_page[i:j]
+
     resp = requests.post(server_ip, data={
         "magic": magic,
         "username": USER,
@@ -84,7 +97,7 @@ try:
         data = CRED[i].split()
         USER = data[0]
         PASS = data[1]
-        server_url, keepalive_url = login()
+        server_url, keepalive_url = login(server_ip,magic)
         if server_url:
             sleep(300)
             logout(server_url)
