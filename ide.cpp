@@ -44,104 +44,18 @@ using ll = long long;
 const long long mod = 1000000007;
 auto TimeStart = chrono::steady_clock::now();
 
-const int nax = 2e5 + 10, m = 17;
-vector<pair<int, int>> Adj[nax];
-ll d[nax], dp[1 << m];
-
-void dfs(int node, int par)
-{
-	for (auto child : Adj[node])
-		if (child.f != par)
-		{
-			d[child.f] = d[node] ^ child.s;
-			dfs(child.f, node);
-		}
-}
-
-const int kmod = 1000000007;
-
-ll mul(ll a, ll b, int mod = kmod)
-{
-	return a * b % mod;
-}
-
-ll power(int base, int index, int mod = kmod)
-{
-	if (index == 0)
-		return 1;
-	ll temp = power(base, index / 2, mod);
-	temp = mul(temp, temp, mod);
-	if (index & 1)
-		temp = mul(temp, base, mod);
-	return temp;
-}
-
-void Transform(ll *x, int n, bool invert)
-{
-	for (int len = 1; 2 * len <= n; len <<= 1)
-	{
-		for (int i = 0; i < n; i += 2 * len)
-		{
-			for (int j = 0; j < len; j++)
-			{
-				int u = x[i + j], v = x[i + len + j];
-				x[i + j] = u + v;
-				if (x[i + j] >= mod)
-				{
-					x[i + j] -= mod;
-				}
-				x[i + len + j] = u - v;
-				if (x[i + len + j] < 0)
-				{
-					x[i + len + j] += mod;
-				}
-				if (x[i + len + j] >= mod)
-				{
-					x[i + len + j] -= mod;
-				}
-			}
-		}
-	}
-	if (invert)
-	{
-		int rev_n = power(n, mod - 2);
-		for (int i = 0; i < n; i++)
-			x[i] = 1LL * x[i] * rev_n % mod;
-	}
-}
-
-void add_self(ll &a, ll b)
-{
-	a += b;
-	if (a >= mod)
-		a -= mod;
-}
+const int nax = 2e5 + 10;
 
 void solve()
 {
-	int n, u, v, w;
-	cin >> n;
-	for (int i = 1; i < n; ++i)
+	srand(time(NULL));
+	int x;
+	while (true)
 	{
-		cin >> u >> v >> w;
-		Adj[u].pb({v, w});
-		Adj[v].pb({u, w});
+		cout << rand() % 10 << '\n';
+		flush(cout);
+		cin >> x;
 	}
-	dfs(1, -1);
-	for (int i = 1; i <= n; ++i)
-		dp[d[i]]++;
-	Transform(dp, 1 << m, false);
-	for (int i = 0; i < (1 << m); ++i)
-		dp[i] = (dp[i] * dp[i]) % mod;
-	Transform(dp, 1 << m, true);
-	ll ans = 0;
-	for (int i = 0; i < (1 << m); ++i)
-	{
-		add_self(ans, mul(dp[i], dp[i]));
-		for (int j = 0; j < m; ++j)
-			add_self(ans, mul(dp[i], dp[i ^ (1 << j)]));
-	}
-	cout << ans;
 }
 
 int main()
