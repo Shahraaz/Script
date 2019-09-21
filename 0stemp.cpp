@@ -62,7 +62,6 @@ int main()
 		solve();
 #ifdef WIN32
 	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
-	cin >> t;
 	flush(cout);
 #endif
 	return 0;

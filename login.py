@@ -76,6 +76,7 @@ def login():
     sys.stdout.flush()
     f = open("Url.txt", "w")
     f.write(server_ip)
+    f.write("\n")
     f.write(keepalive_url)
     f.close()
     return server_ip, keepalive_url
