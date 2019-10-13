@@ -15,10 +15,24 @@ ostream &operator<<(ostream &out, const pair<T, U> &p)
 template <typename Arg>
 void PC(const char *name, Arg &&arg)
 {
+	while (*name == ',' || *name == ' ')
+		name++;
 	std::cerr << name << " { ";
 	for (const auto &v : arg)
 		cerr << v << ' ';
 	cerr << " }\n";
+}
+template <typename Arg1, typename... Args>
+void PC(const char *names, Arg1 &&arg1, Args &&... args)
+{
+	while (*names == ',' || *names == ' ')
+		names++;
+	const char *comma = strchr(names, ',');
+	std::cerr.write(names, comma - names) << " { ";
+	for (const auto &v : arg1)
+		cerr << v << ' ';
+	cerr << " }\n";
+	PC(comma, args...);
 }
 template <typename Arg1>
 void ZZ(const char *name, Arg1 &&arg1)
@@ -64,7 +78,6 @@ int main()
 		solve();
 #ifdef WIN32
 	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
-	flush(cout);
 #endif
 	return 0;
 }
