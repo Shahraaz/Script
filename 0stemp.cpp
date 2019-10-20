@@ -59,7 +59,7 @@ auto TimeStart = chrono::steady_clock::now();
 
 const int nax = 2e5 + 10, mod = 1000000007;
 
-void solve()
+void solve(int caseNo)
 {
 }
 
@@ -73,8 +73,8 @@ int main()
 #ifdef multitest
 	cin >> t;
 #endif
-	while (t--)
-		solve();
+	for (int i = 0; i < t; ++i)
+		solve(i);
 #ifdef WIN32
 	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
