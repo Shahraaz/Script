@@ -1,0 +1,1 @@
+cp -r C:/\Script_Folder/\.vscode ./
