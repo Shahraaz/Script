@@ -28,9 +28,9 @@ cp a.cpp extra.cpp
 touch input.txt
 cp -r C:/\Script_Folder/\.vscode .vscode
 code .
-code f.cpp
-code e.cpp
-code d.cpp
-code c.cpp
-code b.cpp
 code a.cpp
+code b.cpp
+code c.cpp
+code d.cpp
+code e.cpp
+code f.cpp

@@ -75,7 +75,7 @@ int main()
 #endif
 	for (int i = 0; i < t; ++i)
 		solve(i);
-#ifdef WIN32
+#ifdef TIME
 	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
 	return 0;
