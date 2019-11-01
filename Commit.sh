@@ -18,7 +18,7 @@ cd $direct
 git add --all
 if [ $? -eq 0 ]
 then
-    git commit -m "$(date +"%a, %b %d %H:%M") $commit_message"
+    git commit -m "`date` $commit_message"
     git push -u origin master
 else
     folder=$(ls $2)
