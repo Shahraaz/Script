@@ -109,12 +109,9 @@ try:
             sleep(300)
             logout(server_url)
 except KeyboardInterrupt:
-    str1 = input("Do you want to shutdown?(y/n) ")
     str = input("Do you want to run Commiter?(y/n) ")
     if str[0] == 'y' or str[0] == 'Y':
         os.system("commitGlobal.sh")
     print("Bbye")
     sys.stdout.flush()
     logout(server_url)
-    if str1[0] == 'y' or str1[0] == 'Y':
-        os.system("shutdown -s -t 0")
