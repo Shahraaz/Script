@@ -1,1 +1,1 @@
-cp -r C:/\Script_Folder/\.vscode ./
+cp -r cat /home/shahraaz/bin/.vscode ./

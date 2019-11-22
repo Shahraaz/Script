@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef LOCAL
 #include <bits/stdc++.h>
 using namespace std;
 #endif
@@ -53,10 +53,9 @@ public:
     }
 };
 
-#ifdef WIN32
+#ifdef LOCAL
 int main()
 {
     Solution s;
-    cout << s.fun();
 }
 #endif

@@ -1,3 +1,3 @@
 #!/bin/bash
-cd C:/\Users/\Sheraaz/\Desktop/\Competitive_programming/\CP_S5/\codeforces
+cd /home/shahraaz/Documents/CP/CP_S5/codeforces
 code .

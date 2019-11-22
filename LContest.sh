@@ -18,12 +18,12 @@ mkdir $Contest_Name
 cd $Contest_Name
 touch a.cpp
 > a.cpp
-cat C:/\Script_Folder/\LClass.cpp >> a.cpp
+cat /home/shahraaz/bin/LClass.cpp >> a.cpp
 cp a.cpp b.cpp
 cp a.cpp c.cpp
 cp a.cpp d.cpp
 cp a.cpp extra.cpp
-cp -r C:/\Script_Folder/\.vscode .vscode
+cp -r /home/shahraaz/bin/.vscode .vscode
 code .
 code d.cpp
 code c.cpp

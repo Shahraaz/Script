@@ -1,2 +1,3 @@
-cp C:/\Script_Folder/\appet.jnlp appetNew.jnlp
-cmd .
+cd /home/shahraaz/bin/
+getAppet.sh 
+javaws ContestAppletProd.jnlp

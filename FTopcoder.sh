@@ -16,5 +16,5 @@ fi
 cd $direct
 touch $File_Name
 > $File_Name
-cat C:/\Script_Folder/\TClass.cpp >> $File_Name
+cat /home/shahraaz/bin/TClass.cpp >> $File_Name
 code $File_Name

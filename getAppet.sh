@@ -1,1 +1,1 @@
-cp C:/\Script_Folder/\appet.jnlp appetNew.jnlp
+wget http://www.topcoder.com/contest/arena/ContestAppletProd.jnlp

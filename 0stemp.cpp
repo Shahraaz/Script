@@ -3,7 +3,7 @@
 using namespace std;
 
 // #define multitest 1
-#ifdef WIN32
+#ifdef LOCAL
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
 template <typename T, typename U>
@@ -61,11 +61,15 @@ const int nax = 2e5 + 10, mod = 1000000007;
 
 void solve(int caseNo)
 {
+	int x;
+	cin >> x;
+	cout << "Her\n";
+	cout << x << '\n';
 }
 
 int main()
 {
-#ifndef WIN32
+#ifndef LOCAL
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
 #endif
