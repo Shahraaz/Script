@@ -56,7 +56,7 @@ public:
 	}
 };
 
-#ifdef WIN32
+#ifdef LOCAL
 int main()
 {
 	ios_base::sync_with_stdio(0);

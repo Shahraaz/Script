@@ -1,3 +1,3 @@
-cd /home/shahraaz/bin/
+cd /home/shahraaz/Documents/
 getAppet.sh 
 javaws ContestAppletProd.jnlp

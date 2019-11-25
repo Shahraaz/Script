@@ -1,0 +1,14 @@
+#!/bin/bash
+curr=$(pwd)
+cd $HOME/myexpos/
+if [ "$#" == 0 ]; then
+	bash ./compile_spl
+	bash ./compile_expl
+	bash ./load_xfs
+	cd xsm
+	./xsm
+else
+	cd xsm
+	./xsm $*
+fi;
+cd $curr

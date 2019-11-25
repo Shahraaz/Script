@@ -61,10 +61,6 @@ const int nax = 2e5 + 10, mod = 1000000007;
 
 void solve(int caseNo)
 {
-	int x;
-	cin >> x;
-	cout << "Her\n";
-	cout << x << '\n';
 }
 
 int main()

@@ -1,1 +1,2 @@
-cp -r cat /home/shahraaz/bin/.vscode ./
+#!/bin/bash
+cp -r /home/shahraaz/bin/.vscode ./
