@@ -26,6 +26,7 @@ else
     do	if [ -d $f ]
         then
             cd $f
+            echo $(pwd)
             git add --all
             if [ $? -eq 1 ]
             then
