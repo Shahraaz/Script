@@ -5,7 +5,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-// #define multitest 1
+// #define MULTI_TEST
 #ifdef LOCAL
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
@@ -55,16 +55,16 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #endif
 
 using ll = long long;
-using T = pair<int, int>;
-using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template<typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 #define f first
 #define s second
 #define pb push_back
 auto TimeStart = chrono::steady_clock::now();
 
-const int nax = 2e5 + 10, mod = 1000000007;
+const int NAX = 2e5 + 10, MOD = 1000000007;
 
-void solve(int caseNo)
+void solveCase(int caseNo)
 {
 }
 
@@ -75,11 +75,11 @@ int main()
     cin.tie(0);
 #endif
     int t = 1;
-#ifdef multitest
+#ifdef MULTI_TEST
     cin >> t;
 #endif
     for (int i = 0; i < t; ++i)
-        solve(i);
+        solveCase(i);
 #ifdef TIME
     cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
 #endif
