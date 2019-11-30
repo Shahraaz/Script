@@ -55,7 +55,7 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 #endif
 
 using ll = long long;
-template<typename T>
+template <typename T>
 using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 #define f first
 #define s second
@@ -78,10 +78,13 @@ int main()
 #ifdef MULTI_TEST
     cin >> t;
 #endif
-    for (int i = 0; i < t; ++i)
+    for (int i = 1; i <= t; ++i)
+    {
         solveCase(i);
 #ifdef TIME
-    cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
+        cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
+        TimeStart = chrono::steady_clock::now();
 #endif
+    }
     return 0;
 }
