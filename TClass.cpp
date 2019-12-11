@@ -2,8 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define multitest 1
-// #define Debug
+#define Debug
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
 #define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
@@ -46,32 +45,23 @@ const long long mod = 1000000007;
 
 const int nax = 2e5 + 10;
 
-class Solver
+class <%:class-name%> 
 {
-private:
-	/* data */
 public:
-	int Solve(/* args */)
-	{
+	<%:return-type%> <%:method-name%>(<%:param-list%>) {
+		<%:set-caret%>
 	}
 };
+
+
+#ifndef LOCAL
+//<%:testing-code%>
+#endif
+
 
 #ifdef LOCAL
 int main()
 {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	int t = 1;
-	auto TimeStart = chrono::steady_clock::now();
-#ifdef multitest
-	cin >> t;
-#endif
-	Solver S;
-	while (t--)
-		S.Solve();
-#ifdef WIN32
-	cerr << "\n\nTime elapsed: " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " seconds.\n";
-#endif
 	return 0;
 }
 #endif
