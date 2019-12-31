@@ -1,7 +1,5 @@
-#ifdef LOCAL
 #include <bits/stdc++.h>
 using namespace std;
-#endif
 #define Debug
 #ifdef Debug
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
