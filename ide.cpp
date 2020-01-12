@@ -60,7 +60,7 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define f first
 #define s second
 #define pb push_back
-#define all(v) v.begin(), v.end()
+#define all(v) v.begin(),v.end()
 auto TimeStart = chrono::steady_clock::now();
 auto seed = TimeStart.time_since_epoch().count();
 std::mt19937 rng(seed);
@@ -71,38 +71,6 @@ const int NAX = 2e5 + 5, MOD = 1000000007;
 
 void solveCase(int caseNo)
 {
-    string str;
-    // vector<string> codes;
-    map<string, map<string, map<int, int>>> mm;
-    while (cin >> str)
-    {
-        int n = str.size();
-        string aa = str.substr(0, 1) + str.substr(n - 2, 2);
-        for (auto &c : aa)
-            if (islower(c))
-                c -= 'a' - 'A';
-        int num = atoi(str.substr(1, 2).c_str());
-        // db(aa, num);
-        mm[aa.substr(0, 1)][aa.substr(1, 2)][num]++;
-    }
-    map<int, int> cnt;
-    for (auto elem : mm)
-    {
-        cout << elem.f << '\n';
-        for (auto elem2 : elem.s)
-        {
-            cout << elem2.f << '\n';
-            for (auto elem3 : elem2.s)
-            {
-                cout << elem3.f << ' ';
-                cout << elem3.s << '\n';
-                cnt[elem3.f] += elem3.s;
-            }
-        }
-    }
-    db("ABCD");
-    for (auto elem : cnt)
-        cout << elem << '\n';
 }
 
 int main()
