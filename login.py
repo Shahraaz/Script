@@ -111,11 +111,11 @@ try:
 except KeyboardInterrupt:
     str = input("Do you want to run Commiter?(y/n) ")
     str2 = input("Do you want to shutdown?(y/n) ")
-    if str[0] == 'y' or str[0] == 'Y':
+    if str == "" or str[0] == 'y' or str[0] == 'Y':
         os.system("globalCommit.sh")
     print("Bbye")
     sys.stdout.flush()
     logout(server_url)
-    if str2[0] == 'y' or str2[0] == 'Y':
+    if str2 == "" or str2[0] == 'y' or str2[0] == 'Y':
         os.system("poweroff")
     
