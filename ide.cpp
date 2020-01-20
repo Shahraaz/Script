@@ -1,95 +1,118 @@
-// Optimise
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
-using namespace __gnu_pbds;
-
-// #define MULTI_TEST
-#ifdef LOCAL
-#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
-#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
-template <typename T, typename U>
-ostream &operator<<(ostream &out, const pair<T, U> &p)
+#define int long long
+int add[500006] = {0}, zero[500006] = {0}, one[500006] = {0}, temp;
+void build_tree(int l, int r, int pos)
 {
-    out << '[' << p.first << ", " << p.second << ']';
-    return out;
-}
-template <typename Arg>
-void PC(const char *name, Arg &&arg)
-{
-    while (*name == ',' || *name == ' ')
-        name++;
-    std::cerr << name << " { ";
-    for (const auto &v : arg)
-        cerr << v << ' ';
-    cerr << " }\n";
-}
-template <typename Arg1, typename... Args>
-void PC(const char *names, Arg1 &&arg1, Args &&... args)
-{
-    while (*names == ',' || *names == ' ')
-        names++;
-    const char *comma = strchr(names, ',');
-    std::cerr.write(names, comma - names) << " { ";
-    for (const auto &v : arg1)
-        cerr << v << ' ';
-    cerr << " }\n";
-    PC(comma, args...);
-}
-template <typename Arg1>
-void ZZ(const char *name, Arg1 &&arg1)
-{
-    std::cerr << name << " = " << arg1 << endl;
-}
-template <typename Arg1, typename... Args>
-void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
-{
-    const char *comma = strchr(names + 1, ',');
-    std::cerr.write(names, comma - names) << " = " << arg1;
-    ZZ(comma, args...);
-}
-#else
-#define db(...)
-#define pc(...)
-#endif
-
-using ll = long long;
-template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-#define f first
-#define s second
-#define pb push_back
-#define all(v) v.begin(),v.end()
-auto TimeStart = chrono::steady_clock::now();
-auto seed = TimeStart.time_since_epoch().count();
-std::mt19937 rng(seed);
-template <typename T>
-using Random = std::uniform_int_distribution<T>;
-
-const int NAX = 2e5 + 5, MOD = 1000000007;
-
-void solveCase(int caseNo)
-{
-}
-
-int main()
-{
-#ifndef LOCAL
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-#endif
-    int t = 1;
-#ifdef MULTI_TEST
-    cin >> t;
-#endif
-    for (int i = 1; i <= t; ++i)
+    if (l == r)
     {
-        solveCase(i);
-#ifdef TIME
-        cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
-        TimeStart = chrono::steady_clock::now();
-#endif
+        zero[pos] = 1;
+        return;
+    }
+    else if (l < r)
+    {
+        int mid = (l + r) / 2;
+        build_tree(l, mid, 2 * pos);
+        build_tree(mid + 1, r, 2 * pos + 1);
+        zero[pos] = zero[2 * pos] + zero[2 * pos + 1];
+    }
+    return;
+}
+void update(int l, int r, int pos, int ql, int qr)
+{
+    if (ql > r || qr < l || r > l)
+        return;
+    if (add[pos] > 0)
+    {
+        if (add[pos] % 3 == 1)
+        {
+            temp = one[pos];
+            one[pos] = zero[pos];
+            zero[pos] = (r - l + 1) - zero[pos] - temp;
+        }
+        if (add[pos] % 3 == 2)
+        {
+            temp = one[pos];
+            one[pos] = (r - l + 1) - zero[pos] - one[pos];
+            zero[pos] = temp;
+        }
+        if (l != r)
+        {
+            add[2 * pos] += add[pos];
+            add[2 * pos + 1] += add[pos];
+        }
+        add[pos] = 0;
+    }
+    if (ql <= l && qr >= r)
+    {
+        temp = one[pos];
+        one[pos] = zero[pos];
+        zero[pos] = (r - l + 1) - zero[pos] - temp;
+        if (l != r)
+        {
+            add[2 * pos] += 1;
+            add[2 * pos + 1] += 1;
+        }
+        return;
+    }
+    int mid = (l + r) / 2;
+    update(l, mid, 2 * pos, ql, qr);
+    update(mid + 1, r, 2 * pos + 1, ql, qr);
+    one[pos] = one[2 * pos] + one[2 * pos + 1];
+    zero[pos] = zero[2 * pos] + zero[2 * pos + 1];
+    return;
+}
+int query(int l, int r, int pos, int ql, int qr)
+{
+    if (ql > r || qr < l || r > l)
+        return 0;
+    int ans;
+    if (add[pos] > 0)
+    {
+        if (add[pos] % 3 == 1)
+        {
+            temp = one[pos];
+            one[pos] = zero[pos];
+            zero[pos] = (r - l + 1) - zero[pos] - temp;
+        }
+        if (add[pos] % 3 == 2)
+        {
+            temp = one[pos];
+            one[pos] = (r - l + 1) - zero[pos] - one[pos];
+            zero[pos] = temp;
+        }
+        if (l != r)
+        {
+            add[2 * pos] += add[pos];
+            add[2 * pos + 1] += add[pos];
+        }
+        add[pos] = 0;
+    }
+    if (ql <= l && qr <= r)
+    {
+        return zero[pos];
+    }
+    int mid = (l + r) / 2;
+    ans = query(l, mid, 2 * pos, ql, qr) + query(mid + 1, r, 2 * pos + 1, ql, qr);
+    return ans;
+}
+signed main()
+{
+    int n, q, ty, x, y;
+    cin >> n >> q;
+    build_tree(0, n - 1, 1);
+    for (int i = 0; i < q; i++)
+    {
+        cin >> ty >> x >> y;
+        if (ty == 0)
+        {
+            update(0, n - 1, 1, x, y);
+        }
+        else if (ty == 1)
+        {
+            int ans = query(0, n - 1, 1, x, y);
+            cout << ans << endl;
+        }
     }
     return 0;
 }
