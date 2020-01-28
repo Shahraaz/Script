@@ -73,7 +73,7 @@ void solveCase()
 {
 }
 
-int main()
+int32_t main()
 {
 #ifndef LOCAL
     ios_base::sync_with_stdio(0);
