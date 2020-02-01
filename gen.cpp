@@ -69,29 +69,37 @@ using Random = std::uniform_int_distribution<T>;
 
 const int NAX = 2e5 + 5, MOD = 1000000007;
 
+void getRandStr()
+{
+    int len = Random<int>{1, 20}(rng);
+    while (len--)
+        cout << char(Random<int>('a', 'z')(rng));
+    cout << ' ';
+}
+
 void solveCase()
 {
-    string str;
-    while (getline(cin, str))
+    int n;
+    n = Random<int>{1, 20}(rng);
+    while (n--)
     {
-        stringstream s(str);
-        string st;
-        while (s >> st)
+        int len = Random<int>{1, 20}(rng);
+        while (len--)
         {
-            if (st[0] == '-' || '0' <= st[0] && st[0] <= '9')
+            switch (Random<int>(0, 2)(rng))
             {
-                double val = stof(st.c_str());
-                if (floor(val) == ceil(val) && count(all(st), '.') == 0)
-                {
-                    cout << "int ";
-                }
-                else
-                {
-                    cout << "float ";
-                }
+            case 0:
+                cout << Random<int>(-100, 100)(rng) << ' ';
+                break;
+            case 1:
+                cout << uniform_real_distribution<double>(-100, 100)(rng) << ' ';
+                break;
+            case 2:
+                getRandStr();
+                break;
+            default:
+                break;
             }
-            else
-                cout << "string ";
         }
         cout << '\n';
     }
