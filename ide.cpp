@@ -72,29 +72,22 @@ const int NAX = 2e5 + 5, MOD = 1000000007;
 void solveCase()
 {
     string str;
+    map<string, int> cnt;
     while (getline(cin, str))
     {
-        stringstream s(str);
-        string st;
-        while (s >> st)
+        string temp = str.substr(0, 3);
+        string temp2 = str.substr(str.size() - 2, 2);
+        temp += temp2;
+        for (auto &c : temp)
         {
-            if (st[0] == '-' || '0' <= st[0] && st[0] <= '9')
-            {
-                double val = stof(st.c_str());
-                if (floor(val) == ceil(val) && count(all(st), '.') == 0)
-                {
-                    cout << "int ";
-                }
-                else
-                {
-                    cout << "float ";
-                }
-            }
-            else
-                cout << "string ";
+            if (islower(c))
+                c = toupper(c);
         }
-        cout << '\n';
+
+        db(temp, str);
+        cnt[temp]++;
     }
+    pc(cnt);
 }
 
 int32_t main()
