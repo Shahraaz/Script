@@ -69,7 +69,16 @@ using Random = std::uniform_int_distribution<T>;
 
 const int NAX = 2e5 + 5, MOD = 1000000007;
 
-void solveCase()
+class Solution
+{
+private:
+public:
+    Solution() {}
+    ~Solution() {}
+    void Solve();
+};
+
+void Solution::Solve()
 {
 }
 
@@ -83,9 +92,10 @@ int32_t main()
 #ifdef MULTI_TEST
     cin >> t;
 #endif
+    Solution mySolver;
     for (int i = 1; i <= t; ++i)
     {
-        solveCase();
+        mySolver.Solve();
 #ifdef TIME
         cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
         TimeStart = chrono::steady_clock::now();
