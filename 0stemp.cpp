@@ -75,12 +75,10 @@ private:
 public:
     Solution() {}
     ~Solution() {}
-    void Solve();
+    void solveCase()
+    {
+    }
 };
-
-void Solution::Solve()
-{
-}
 
 int32_t main()
 {
@@ -95,7 +93,7 @@ int32_t main()
     Solution mySolver;
     for (int i = 1; i <= t; ++i)
     {
-        mySolver.Solve();
+        mySolver.solveCase();
 #ifdef TIME
         cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
         TimeStart = chrono::steady_clock::now();
