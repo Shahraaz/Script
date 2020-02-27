@@ -123,12 +123,8 @@ while True:
             data = CRED[i].split()
             USER = data[0]
             PASS = data[1]
-            print("req Start")
-            now = datetime.now()
-            print(now.strftime("%d-%m %H:%M:%S"))
-            sys.stdout.flush()
             server_url, keepalive_url = login()
-            print("req End")
+            print("Time Stamp")
             now = datetime.now()
             print(now.strftime("%d-%m %H:%M:%S"))
             sys.stdout.flush()
@@ -148,4 +144,4 @@ while True:
         sys.exit()
     except:
         print("Error\n")
-        sleep(30)
+        sleep(10)

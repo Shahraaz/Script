@@ -148,10 +148,10 @@ private:
     void recommendation()
     {
         cout << "Recommendatons\n";
-        if (A2OJCurr < A2OJLim)
-            cout << "Try Solving an A2oj Problem\n";
         if(belowCurr < belowLim)
             cout << "Try Solving a belowRating\n";
+        if (A2OJCurr < A2OJLim)
+            cout << "Try Solving an A2oj Problem\n";
         if(aboveCurr < aboveLim)
             cout << "Try Solving an aboveRating\n";
         cout << '\n';
