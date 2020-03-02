@@ -69,26 +69,82 @@ using Random = std::uniform_int_distribution<T>;
 
 const int NAX = 2e5 + 5, MOD = 1000000007;
 
-void solveCase()
+struct Bit
 {
-    string str;
-    map<string, int> cnt;
-    while (getline(cin, str))
+    int size;
+    vector<int> table;
+    Bit(int size)
     {
-        string temp = str.substr(0, 3);
-        string temp2 = str.substr(str.size() - 2, 2);
-        temp += temp2;
-        for (auto &c : temp)
-        {
-            if (islower(c))
-                c = toupper(c);
-        }
-
-        db(temp, str);
-        cnt[temp]++;
+        this->size = size;
+        table.resize(size);
     }
-    pc(cnt);
-}
+    void update(int i, int delta)
+    {
+        while (i < size)
+        {
+            table[i] += delta;
+            i += i & (-i);
+        }
+    }
+    ll sum(int i)
+    {
+        int ret = 0;
+        while (i > 0)
+        {
+            ret += table[i];
+            i -= i & (-i);
+        }
+        return ret;
+    }
+    ll rangeSum(int i, int j)
+    {
+        return sum(j) - sum(i);
+    }
+};
+
+class Solution
+{
+private:
+public:
+    Solution() {}
+    ~Solution() {}
+    void solveCase()
+    {
+        int n, q;
+        cin >> n >> q;
+        Bit myBit(n);
+        vector<int> v(n);
+        for (int i = 1; i <= n; i++)
+        {
+            int x;
+            cin >> x;
+            v[i - 1] = x;
+            myBit.update(i - 1, x);
+            // cin >> arr[i];
+        }
+        // build(1, 1, n);
+        for (int i = 0; i < q; i++)
+        {
+            char c;
+            cin >> c;
+            if (c == '=')
+            {
+                int idx, val;
+                cin >> idx >> val;
+                // update(1, 1, n, idx, val);
+                myBit.update(idx - 1, val - v[idx - 1]);
+                v[idx - 1] = val;
+            }
+            else
+            {
+                int l, r;
+                cin >> l >> r;
+                cout << myBit.rangeSum(l - 1, r - 1) << '\n';
+                // cout << query(1, 1, n, l, r) << "\n";
+            }
+        }
+    }
+};
 
 int32_t main()
 {
@@ -100,9 +156,10 @@ int32_t main()
 #ifdef MULTI_TEST
     cin >> t;
 #endif
+    Solution mySolver;
     for (int i = 1; i <= t; ++i)
     {
-        solveCase();
+        mySolver.solveCase();
 #ifdef TIME
         cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
         TimeStart = chrono::steady_clock::now();

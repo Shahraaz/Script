@@ -81,7 +81,7 @@ class Solution
 private:
     void read()
     {
-        cout << "Read\n";
+        // cout << "Read\n";
         inFile.open("problem_status");
         inFile >> myRating >> cycleCount;
         inFile >> belowCurr >> belowTotal >> belowLim;
@@ -90,7 +90,7 @@ private:
     }
     void write()
     {
-        cout << "Write\n";
+        // cout << "Write\n";
         inFile.close();
         outFile.open("problem_status");
         outFile << myRating << ' ' << cycleCount << '\n';
@@ -114,18 +114,45 @@ private:
         if (belowCurr >= belowLim && aboveCurr >= aboveLim && A2OJCurr >= A2OJLim)
         {
             cout << "Congrats you have finished a cycle\n";
+            cout << "Congrats you have finished a cycle\n";
+            cout << "Congrats you have finished a cycle\n";
+            cout << "Congrats you have finished a cycle\n";
             cycleCount++;
             belowCurr -= belowLim;
             aboveCurr -= aboveLim;
             A2OJCurr -= A2OJLim;
         }
-        cout << "End Refactor\n";
+        cout << "End Refactor\n\n";
     }
     void printMenu()
     {
-        cout << "What rating Problem have you solved?" << '\n';
+        cout << "What rating Problem have you solved?(give -1 if you want to update your rating)" << '\n';
         int rating;
         cin >> rating;
+        if (rating == -1)
+        {
+            cout << "Enter your new rating!\n";
+            cin >> rating;
+            if (rating > myRating)
+            {
+                cout << "Congrats on leveling up\n";
+                cout << "Congrats on leveling up\n";
+                cout << "Congrats on leveling up\n";
+                cout << "Congrats on leveling up\n";
+            }
+            else
+            {
+                cout << "Congrats on finding more of your weaksnesses\n";
+                cout << "Congrats on finding more of your weaksnesses\n";
+                cout << "Congrats on finding more of your weaksnesses\n";
+                cout << "Congrats on finding more of your weaksnesses\n";
+            }
+
+            this->myRating = rating;
+            cout << "Rating updated!\n\n";
+
+            return;
+        }
         cout << "Is it from A2oj(1/0)" << '\n';
         bool isA2oj;
         cin >> isA2oj;
@@ -148,11 +175,11 @@ private:
     void recommendation()
     {
         cout << "Recommendatons\n";
-        if(belowCurr < belowLim)
+        if (belowCurr < belowLim)
             cout << "Try Solving a belowRating\n";
         if (A2OJCurr < A2OJLim)
             cout << "Try Solving an A2oj Problem\n";
-        if(aboveCurr < aboveLim)
+        if (aboveCurr < aboveLim)
             cout << "Try Solving an aboveRating\n";
         cout << '\n';
     }
@@ -160,7 +187,6 @@ private:
 public:
     Solution()
     {
-        read();
     }
     ~Solution()
     {
