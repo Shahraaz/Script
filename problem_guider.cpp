@@ -160,16 +160,29 @@ private:
         {
             A2OJCurr++;
             A2OJTotal++;
-        }
-        if (rating <= myRating)
-        {
-            belowCurr++;
-            belowTotal++;
+            // if (rating <= myRating)
+            // {
+            //     // belowCurr++;
+            //     // belowTotal++;
+            // }
+            // else
+            // {
+            //     aboveCurr++;
+            //     aboveTotal++;
+            // }
         }
         else
         {
-            aboveCurr++;
-            aboveTotal++;
+            if (rating <= myRating)
+            {
+                belowCurr++;
+                belowTotal++;
+            }
+            else
+            {
+                aboveCurr++;
+                aboveTotal++;
+            }
         }
     }
     void recommendation()
