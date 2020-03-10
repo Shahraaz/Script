@@ -5,58 +5,14 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-// #define MULTI_TEST
+#define MULTI_TEST
 #ifdef LOCAL
-#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
-#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
-template <typename T, typename U>
-ostream &operator<<(ostream &out, const pair<T, U> &p)
-{
-    out << '[' << p.first << ", " << p.second << ']';
-    return out;
-}
-template <typename Arg>
-void PC(const char *name, Arg &&arg)
-{
-    while (*name == ',' || *name == ' ')
-        name++;
-    std::cerr << name << " { ";
-    for (const auto &v : arg)
-        cerr << v << ' ';
-    cerr << " }\n";
-}
-template <typename Arg1, typename... Args>
-void PC(const char *names, Arg1 &&arg1, Args &&... args)
-{
-    while (*names == ',' || *names == ' ')
-        names++;
-    const char *comma = strchr(names, ',');
-    std::cerr.write(names, comma - names) << " { ";
-    for (const auto &v : arg1)
-        cerr << v << ' ';
-    cerr << " }\n";
-    PC(comma, args...);
-}
-template <typename Arg1>
-void ZZ(const char *name, Arg1 &&arg1)
-{
-    std::cerr << name << " = " << arg1 << endl;
-}
-template <typename Arg1, typename... Args>
-void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
-{
-    const char *comma = strchr(names + 1, ',');
-    std::cerr.write(names, comma - names) << " = " << arg1;
-    ZZ(comma, args...);
-}
+#include "/home/shahraaz/bin/debug.h"
 #else
 #define db(...)
 #define pc(...)
 #endif
 
-using ll = long long;
-template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 #define f first
 #define s second
 #define pb push_back
@@ -64,83 +20,97 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 auto TimeStart = chrono::steady_clock::now();
 auto seed = TimeStart.time_since_epoch().count();
 std::mt19937 rng(seed);
+using ll = long long;
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 template <typename T>
 using Random = std::uniform_int_distribution<T>;
 
 const int NAX = 2e5 + 5, MOD = 1000000007;
 
-struct Bit
-{
-    int size;
-    vector<int> table;
-    Bit(int size)
-    {
-        this->size = size;
-        table.resize(size);
-    }
-    void update(int i, int delta)
-    {
-        while (i < size)
-        {
-            table[i] += delta;
-            i += i & (-i);
-        }
-    }
-    ll sum(int i)
-    {
-        int ret = 0;
-        while (i > 0)
-        {
-            ret += table[i];
-            i -= i & (-i);
-        }
-        return ret;
-    }
-    ll rangeSum(int i, int j)
-    {
-        return sum(j) - sum(i);
-    }
-};
-
 class Solution
 {
 private:
+    map<pair<int, pair<int, int>>, int> dp;
+    int grundy(int x, int y, int z)
+    {
+        if (dp.count({x, {y, z}}))
+            return dp[{x, {y, z}}];
+        int ret = 0;
+        if (x == 0)
+        {
+            if (y == 0)
+            {
+                ret = z & 1;
+            }
+            else
+            {
+                ret = z & 1;
+            }
+            db(x, y, z, ret);
+            return dp[{x, {y, z}}] = ret;
+        }
+        set<int> temp;
+        if (x > 0)
+            temp.insert(grundy(x - 1, y + 1, z));
+        if (y > 0)
+            temp.insert(grundy(x, y - 1, z + 1));
+        if (z > 0)
+            temp.insert(grundy(x, y, z - 1));
+        while (temp.count(ret))
+        {
+            ret++;
+        }
+        db(x, y, z, ret);
+        return dp[{x, {y, z}}] = ret;
+    }
+
 public:
     Solution() {}
     ~Solution() {}
     void solveCase()
     {
-        int n, q;
-        cin >> n >> q;
-        Bit myBit(n);
-        vector<int> v(n);
-        for (int i = 1; i <= n; i++)
-        {
-            int x;
+        grundy(3, 3, 3);
+        int n;
+        cin >> n;
+        vector<int> p(n);
+        for (auto &x : p)
             cin >> x;
-            v[i - 1] = x;
-            myBit.update(i - 1, x);
-            // cin >> arr[i];
-        }
-        // build(1, 1, n);
-        for (int i = 0; i < q; i++)
+        vector<int> a;
+        for (int i = 0; i < n; i++)
         {
-            char c;
-            cin >> c;
-            if (c == '=')
+            if (i == 0)
             {
-                int idx, val;
-                cin >> idx >> val;
-                // update(1, 1, n, idx, val);
-                myBit.update(idx - 1, val - v[idx - 1]);
-                v[idx - 1] = val;
+                a.pb(p[0] - 1);
+            }
+            else
+                a.pb(p[i] - p[i - 1] - 1);
+        }
+        pc(a);
+        reverse(all(a));
+        while (a.size() && a.back() == 0)
+            a.pop_back();
+        reverse(all(a));
+        pc(a);
+        if (a.size() == 0)
+        {
+            cout << "Johnny wins\n";
+        }
+        else
+        {
+            if (a.size() % 2 == 0)
+            {
+                if (a.back() % 2 == 0)
+                    cout << "Johnny wins\n";
+                else
+                    cout << "Mary wins\n";
             }
             else
             {
-                int l, r;
-                cin >> l >> r;
-                cout << myBit.rangeSum(l - 1, r - 1) << '\n';
-                // cout << query(1, 1, n, l, r) << "\n";
+                if (a.back() & 1)
+                    cout << "Johnny wins\n";
+                else
+                    cout << "Mary wins\n";
             }
         }
     }
