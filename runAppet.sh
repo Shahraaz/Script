@@ -1,4 +1,4 @@
-cd /home/shahraaz/Documents/
+cd $HOME/Documents/
 rm *.jnlp
 getAppet.sh 
 javaws ContestAppletProd.jnlp
