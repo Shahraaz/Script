@@ -76,6 +76,8 @@ class Solution
     int belowCurr, belowTotal, belowLim;
     int aboveCurr, aboveTotal, aboveLim;
     int A2OJCurr, A2OJTotal, A2OJLim;
+    int AtCurr, AtTotal, AtLim;
+    int TcCurr, TcTotal, TcLim;
     int myRating, cycleCount;
 
 private:
@@ -87,6 +89,9 @@ private:
         inFile >> belowCurr >> belowTotal >> belowLim;
         inFile >> aboveCurr >> aboveTotal >> aboveLim;
         inFile >> A2OJCurr >> A2OJTotal >> A2OJLim;
+        inFile >> AtCurr >> AtTotal >> AtLim;
+        inFile >> TcCurr >> TcTotal >> TcLim;
+        inFile.close();
     }
     void write()
     {
@@ -97,6 +102,8 @@ private:
         outFile << belowCurr << ' ' << belowTotal << ' ' << belowLim << '\n';
         outFile << aboveCurr << ' ' << aboveTotal << ' ' << aboveLim << '\n';
         outFile << A2OJCurr << ' ' << A2OJTotal << ' ' << A2OJLim << '\n';
+        outFile << AtCurr << ' ' << AtTotal << ' ' << AtLim << '\n';
+        outFile << TcCurr << ' ' << TcTotal << ' ' << TcLim << '\n';
         outFile.close();
     }
     void printDetails()
@@ -106,6 +113,8 @@ private:
         db(belowCurr, belowTotal, belowLim);
         db(aboveCurr, aboveTotal, aboveLim);
         db(A2OJCurr, A2OJTotal, A2OJLim);
+        db(AtCurr, AtTotal, AtLim);
+        db(TcCurr, TcTotal, TcLim);
         cout << '\n';
     }
     void refactor()
@@ -113,14 +122,19 @@ private:
         cout << "Start Refactor\n";
         if (belowCurr >= belowLim && aboveCurr >= aboveLim && A2OJCurr >= A2OJLim)
         {
-            cout << "Congrats you have finished a cycle\n";
-            cout << "Congrats you have finished a cycle\n";
-            cout << "Congrats you have finished a cycle\n";
-            cout << "Congrats you have finished a cycle\n";
-            cycleCount++;
-            belowCurr -= belowLim;
-            aboveCurr -= aboveLim;
-            A2OJCurr -= A2OJLim;
+            if (AtCurr >= AtLim && TcCurr >= TcLim)
+            {
+                cout << "Congrats you have finished a cycle\n";
+                cout << "Congrats you have finished a cycle\n";
+                cout << "Congrats you have finished a cycle\n";
+                cout << "Congrats you have finished a cycle\n";
+                cycleCount++;
+                belowCurr -= belowLim;
+                aboveCurr -= aboveLim;
+                A2OJCurr -= A2OJLim;
+                AtCurr -= AtLim;
+                TcCurr -= TcLim;
+            }
         }
         cout << "End Refactor\n\n";
     }
@@ -173,15 +187,37 @@ private:
         }
         else
         {
-            if (rating <= myRating)
+            cout << "Is it from TCoder(1/0)" << '\n';
+            bool TCoder;
+            cin >> TCoder;
+            if (TCoder)
             {
-                belowCurr++;
-                belowTotal++;
+                TcCurr++;
+                TcTotal++;
             }
             else
             {
-                aboveCurr++;
-                aboveTotal++;
+                cout << "Is it from AtCoder(1/0)" << '\n';
+                bool AtCoder;
+                cin >> AtCoder;
+                if (AtCoder)
+                {
+                    AtCurr++;
+                    AtTotal++;
+                }
+                else
+                {
+                    if (rating <= myRating)
+                    {
+                        belowCurr++;
+                        belowTotal++;
+                    }
+                    else
+                    {
+                        aboveCurr++;
+                        aboveTotal++;
+                    }
+                }
             }
         }
     }
@@ -194,6 +230,10 @@ private:
             cout << "Try Solving an A2oj Problem\n";
         if (aboveCurr < aboveLim)
             cout << "Try Solving an aboveRating\n";
+        if (AtCurr < AtLim)
+            cout << "Try Solving a Atcoder Problem\n";
+        if (TcCurr < TcLim)
+            cout << "Try Solving a topcode Problem\n";
         cout << '\n';
     }
 
