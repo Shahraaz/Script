@@ -90,7 +90,7 @@ private:
         inFile >> aboveCurr >> aboveTotal >> aboveLim;
         inFile >> A2OJCurr >> A2OJTotal >> A2OJLim;
         inFile >> AtCurr >> AtTotal >> AtLim;
-        inFile >> TcCurr >> TcTotal >> TcLim;
+        // inFile >> TcCurr >> TcTotal >> TcLim;
         inFile.close();
     }
     void write()
@@ -103,7 +103,7 @@ private:
         outFile << aboveCurr << ' ' << aboveTotal << ' ' << aboveLim << '\n';
         outFile << A2OJCurr << ' ' << A2OJTotal << ' ' << A2OJLim << '\n';
         outFile << AtCurr << ' ' << AtTotal << ' ' << AtLim << '\n';
-        outFile << TcCurr << ' ' << TcTotal << ' ' << TcLim << '\n';
+        // outFile << TcCurr << ' ' << TcTotal << ' ' << TcLim << '\n';
         outFile.close();
     }
     void printDetails()
@@ -114,7 +114,7 @@ private:
         db(aboveCurr, aboveTotal, aboveLim);
         db(A2OJCurr, A2OJTotal, A2OJLim);
         db(AtCurr, AtTotal, AtLim);
-        db(TcCurr, TcTotal, TcLim);
+        // db(TcCurr, TcTotal, TcLim);
         cout << '\n';
     }
     void refactor()
@@ -122,7 +122,7 @@ private:
         cout << "Start Refactor\n";
         if (belowCurr >= belowLim && aboveCurr >= aboveLim && A2OJCurr >= A2OJLim)
         {
-            if (AtCurr >= AtLim && TcCurr >= TcLim)
+            if (AtCurr >= AtLim)
             {
                 cout << "Congrats you have finished a cycle\n";
                 cout << "Congrats you have finished a cycle\n";
@@ -133,7 +133,7 @@ private:
                 aboveCurr -= aboveLim;
                 A2OJCurr -= A2OJLim;
                 AtCurr -= AtLim;
-                TcCurr -= TcLim;
+                // TcCurr -= TcLim;
             }
         }
         cout << "End Refactor\n\n";
@@ -187,9 +187,9 @@ private:
         }
         else
         {
-            cout << "Is it from TCoder(1/0)" << '\n';
-            bool TCoder;
-            cin >> TCoder;
+            // cout << "Is it from TCoder(1/0)" << '\n';
+            bool TCoder = false;
+            // cin >> TCoder;
             if (TCoder)
             {
                 TcCurr++;
@@ -232,8 +232,8 @@ private:
             cout << "Try Solving an aboveRating\n";
         if (AtCurr < AtLim)
             cout << "Try Solving a Atcoder Problem\n";
-        if (TcCurr < TcLim)
-            cout << "Try Solving a topcode Problem\n";
+        // if (TcCurr < TcLim)
+        //     cout << "Try Solving a topcode Problem\n";
         cout << '\n';
     }
 
