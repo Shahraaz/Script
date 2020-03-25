@@ -1,5 +1,3 @@
-#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
-#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
 template <typename T, typename U>
 ostream &operator<<(ostream &out, const pair<T, U> &p)
 {
@@ -40,3 +38,5 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
     std::cerr.write(names, comma - names) << " = " << arg1;
     ZZ(comma, args...);
 }
+#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
+#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
