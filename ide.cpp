@@ -5,7 +5,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-#define MULTI_TEST
+// #define MULTI_TEST
 #ifdef LOCAL
 #include "/home/shahraaz/bin/debug.h"
 #else
