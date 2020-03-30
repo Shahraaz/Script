@@ -1,1 +1,1 @@
-wget http://www.topcoder.com/contest/arena/ContestAppletProd.jnlp
+wget https://www.topcoder.com/contest/arena/ContestAppletProd.jnlp
