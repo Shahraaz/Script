@@ -5,7 +5,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-// #define MULTI_TEST
+#define MULTI_TEST
 #ifdef LOCAL
 #include "/home/shahraaz/bin/debug.h"
 #else
@@ -36,6 +36,62 @@ public:
     ~Solution() {}
     void solveCase()
     {
+        ll a, b, c, d;
+        cin >> a >> b >> c >> d;
+        ll x, y, x1, y1, x2, y2;
+        cin >> x >> y >> x1 >> y1 >> x2 >> y2;
+        ll dx = x2 - x1;
+        ll dy = y2 - y1;
+        if (dx == 0)
+            if (a + b != 0)
+            {
+                cout << "NO\n";
+                return;
+            }
+            else
+            {
+                if (a < b)
+                {
+                    b -= a;
+                    if (x2 - x <= b)
+                    {
+                        cout << "NO\n";
+                        return;
+                    }
+                }
+                else
+                {
+                    b -= a;
+                    if (x2 - x <= b)
+                    {
+                        cout << "NO\n";
+                        return;
+                    }
+                }
+
+                a -= b;
+                a = abs(a);
+            }
+        if (dy == 0)
+            if (c + d != 0)
+            {
+                cout << "NO\n";
+                return;
+            }
+            else
+            {
+                if (c < d)
+                {
+                    swap(c, d);
+                    swap(y1, y2);
+                }
+                c -= d;
+                c = abs(c);
+            }
+        if (x - x1 >= a && y - y1 >= c)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
     }
 };
 
