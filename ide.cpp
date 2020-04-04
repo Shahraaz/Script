@@ -5,7 +5,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-// #define MULTI_TEST
+#define MULTI_TEST
 #ifdef LOCAL
 #include "/home/shahraaz/bin/debug.h"
 #else
@@ -36,6 +36,31 @@ public:
     ~Solution() {}
     void solveCase()
     {
+        string str;
+        cin >> str;
+        int currDepth = 0;
+        for (auto &c : str)
+        {
+            int x = c - '0';
+            // cout << x;
+            while (currDepth > x)
+            {
+                cout << ')';
+                currDepth--;
+            }
+            while (currDepth < x)
+            {
+                cout << '(';
+                currDepth++;
+            }
+            cout << x;
+        }
+        while (currDepth--)
+        {
+            cout << ')';
+        }
+
+        cout << '\n';
     }
 };
 
@@ -52,6 +77,7 @@ int32_t main()
     Solution mySolver;
     for (int i = 1; i <= t; ++i)
     {
+        cout << "Case #" << i << ": ";
         mySolver.solveCase();
 #ifdef TIME
         cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
