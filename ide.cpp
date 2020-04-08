@@ -1,64 +1,91 @@
-// Optimise
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-#include <unistd.h>
 using namespace std;
-using namespace __gnu_pbds;
 
-// #define MULTI_TEST
-#ifdef LOCAL
-#include "/home/shahraaz/bin/debug.h"
-#else
-#define db(...)
-#define pc(...)
-#endif
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+#define endl "\n"
+#define int long long
 
-#define f first
-#define s second
-#define pb push_back
-#define all(v) v.begin(), v.end()
-auto TimeStart = chrono::steady_clock::now();
-auto seed = TimeStart.time_since_epoch().count();
-std::mt19937 rng(seed);
-using ll = long long;
-template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-template <typename T>
-using Random = std::uniform_int_distribution<T>;
+const int N = 2e5 + 5;
 
-const int NAX = 2e5 + 5, MOD = 1000000007;
-
-class Solution
-{
-private:
-public:
-    Solution() {}
-    ~Solution() {}
-    void solveCase()
-    {
-        fork();
-    }
-};
+int n, k, c;
+char a[N];
+int storeL[N], idxL[N];
+int storeR[N], idxR[N];
 
 int32_t main()
 {
-#ifndef LOCAL
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-#endif
-    int t = 1;
-#ifdef MULTI_TEST
-    cin >> t;
-#endif
-    Solution mySolver;
-    for (int i = 1; i <= t; ++i)
+    IOS;
+    cin >> n >> k >> c;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    int prv = -1e9, val = 0;
+    for (int i = 1; i <= n; i++)
     {
-        mySolver.solveCase();
-#ifdef TIME
-        cerr << "Case #" << i << ": Time " << chrono::duration<double>(chrono::steady_clock::now() - TimeStart).count() << " s.\n";
-        TimeStart = chrono::steady_clock::now();
-#endif
+        idxL[i] = prv;
+        if (a[i] == 'x')
+        {
+            storeL[i] = val;
+            continue;
+        }
+        if (i - prv > c)
+        {
+            val++;
+            prv = i;
+            storeL[i] = val;
+        }
     }
+    prv = 1e9, val = 0;
+    for (int i = n; i >= 1; i--)
+    {
+        idxR[i] = prv;
+        if (a[i] == 'x')
+        {
+            storeR[i] = val;
+            continue;
+        }
+        if (prv - i > c)
+        {
+            val++;
+            prv = i;
+            storeR[i] = val;
+        }
+    }
+    vector<int> ans;
+    for (int i = 1; i <= n; i++)
+    {
+        int l = idxL[i];
+        int r = idxR[i];
+        cout << i << ' ' << l << ' ' << r << ' ' << storeL[i] << ' ' << storeR[i] << '\n';
+        if (l == -1e9 && r == 1e9)
+            ans.push_back(i);
+        else if (l == -1e9)
+        {
+            if (storeR[r] < k)
+                ans.push_back(i);
+        }
+        else if (r == 1e9)
+        {
+            if (storeL[l] < k)
+                ans.push_back(i);
+        }
+        else
+        {
+            if (abs(r - l) > c)
+            {
+                if (storeL[l] + storeR[r] < k)
+                    ans.push_back(i);
+            }
+            else
+            {
+                if (storeL[l] + storeR[r] - 1 < k)
+                    ans.push_back(i);
+            }
+        }
+    }
+    for (auto &it : ans)
+        cout << it << endl;
     return 0;
 }
