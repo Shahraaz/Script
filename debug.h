@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
+#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
 template <typename T, typename U>
 ostream &operator<<(ostream &out, const pair<T, U> &p)
 {
@@ -38,5 +45,6 @@ void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
     std::cerr.write(names, comma - names) << " = " << arg1;
     ZZ(comma, args...);
 }
-#define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
-#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+auto TimeStart = chrono::steady_clock::now();
