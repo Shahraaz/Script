@@ -6,7 +6,6 @@ using namespace std;
 #include "/home/shahraaz/bin/debug.h"
 #else
 #define db(...)
-#define pc(...)
 #endif
 
 using ll = long long;

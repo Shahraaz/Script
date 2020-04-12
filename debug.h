@@ -3,46 +3,111 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
+
 #define db(...) ZZ(#__VA_ARGS__, __VA_ARGS__);
-#define pc(...) PC(#__VA_ARGS__, __VA_ARGS__);
+
 template <typename T, typename U>
 ostream &operator<<(ostream &out, const pair<T, U> &p)
 {
     out << '[' << p.first << ", " << p.second << ']';
     return out;
 }
-template <typename Arg>
-void PC(const char *name, Arg &&arg)
+template <typename A>
+ostream &operator<<(ostream &out, const vector<A> &v)
 {
-    while (*name == ',' || *name == ' ')
-        name++;
-    std::cerr << name << " { ";
-    for (const auto &v : arg)
-        cerr << v << ' ';
-    cerr << " }\n";
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
 }
-template <typename Arg1, typename... Args>
-void PC(const char *names, Arg1 &&arg1, Args &&... args)
+template <typename A>
+ostream &operator<<(ostream &out, const set<A> &v)
 {
-    while (*names == ',' || *names == ' ')
-        names++;
-    const char *comma = strchr(names, ',');
-    std::cerr.write(names, comma - names) << " { ";
-    for (const auto &v : arg1)
-        cerr << v << ' ';
-    cerr << " }\n";
-    PC(comma, args...);
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+template <typename A>
+ostream &operator<<(ostream &out, const multiset<A> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+template <typename A,typename B>
+ostream &operator<<(ostream &out, const map<A,B> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+template <typename A,typename B>
+ostream &operator<<(ostream &out, const multimap<A,B> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+
+template <typename A>
+ostream &operator<<(ostream &out, const unordered_set<A> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+template <typename A>
+ostream &operator<<(ostream &out, const unordered_multiset<A> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
+}
+template <typename A,typename B>
+ostream &operator<<(ostream &out, const unordered_map<A,B> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }";
+    return out;
+}
+template <typename A,typename B>
+ostream &operator<<(ostream &out, const unordered_multimap<A,B> &v)
+{
+    out << "{ ";
+    for (const auto &x : v)
+        cerr << x << ' ';
+    out << " }\n";
+    return out;
 }
 template <typename Arg1>
 void ZZ(const char *name, Arg1 &&arg1)
 {
+    while (*name == ',' || *name == ' ')
+        name++;
     std::cerr << name << " = " << arg1 << endl;
 }
 template <typename Arg1, typename... Args>
 void ZZ(const char *names, Arg1 &&arg1, Args &&... args)
 {
+    while (*names == ',' || *names == ' ')
+        names++;
     const char *comma = strchr(names + 1, ',');
-    std::cerr.write(names, comma - names) << " = " << arg1;
+    std::cerr.write(names, comma - names) << " = " << arg1 << ", ";
     ZZ(comma, args...);
 }
 template <typename T>
