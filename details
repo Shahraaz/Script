@@ -1,5 +1,0 @@
-#!/bin/bash
-curr=$(pwd)
-cd $HOME/myexpos/
-cat details.txt
-cd $curr

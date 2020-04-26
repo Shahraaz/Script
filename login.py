@@ -100,9 +100,9 @@ def login():
 
 
 def keepalive(keepalive_url):
+    print("Keepalive...")
     if keepalive_url == False:
         return
-    print("Keepalive...")
     sys.stdout.flush()
     requests.get(keepalive_url)
 
@@ -129,8 +129,13 @@ while True:
             print(now.strftime("%d-%m %H:%M:%S"))
             sys.stdout.flush()
             if server_url:
-                sleep(2000)
-                logout(server_url)
+                while True:
+                    sleep(2000)
+                    keepalive(keepalive_url)
+                    print("Time Stamp")
+                    now = datetime.now()
+                    print(now.strftime("%d-%m %H:%M:%S"))
+                    sys.stdout.flush()
     except KeyboardInterrupt:
         str = input("Do you want to run Commiter?(y/n) ")
         str2 = input("Do you want to shutdown?(y/n) ")
@@ -143,5 +148,6 @@ while True:
             os.system("poweroff")
         sys.exit()
     except:
-        print("Error\n")
-        sleep(10)
+        sleep(5)
+        print("Error")
+
